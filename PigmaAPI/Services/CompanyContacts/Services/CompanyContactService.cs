@@ -20,6 +20,7 @@ public class CompanyContactService : ICompanyContactService
 
         if (contact != null && Context!=null)
         {
+            contact.DateCreated = DateTime.Now;
             //Context.CompanyAgencies.Add(contact.CompanyAgencyNavigation);
             Context.CompanyContacts.Add(contact);
             Context.SaveChanges();

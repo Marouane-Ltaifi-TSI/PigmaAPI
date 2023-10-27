@@ -33,7 +33,8 @@ namespace PigmaAPI.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}")]
+        [Route("GetById/{id}")]
+        [HttpGet]
         public async Task<ActionResult<CompanyContact>> GetCompanyContactById(int id)
         {
             _logger.LogInformation("{id},{ControllerBase} GetCompanyContactById()", nameof(id), nameof(ControllerBase));
@@ -48,7 +49,7 @@ namespace PigmaAPI.Controllers
             return NotFound();
         }
 
-
+        [Route("Update")]
         [HttpPut]
         public async Task<IActionResult> PutCompanyContact(CompanyContact companyContact)
         {
@@ -62,7 +63,7 @@ namespace PigmaAPI.Controllers
             
             return NotFound();
         }
-
+        [Route("Create")]
         [HttpPost]
         public async Task<IActionResult> PostCompanyContact(CompanyContact companyContact)
         {
@@ -76,7 +77,8 @@ namespace PigmaAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("{id}")]
+        [Route("Delete/{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteCompanyContact(int id)
         {
             _logger.LogInformation("{id},{ControllerBase} DeleteCompanyContact()", nameof(id), nameof(ControllerBase));
