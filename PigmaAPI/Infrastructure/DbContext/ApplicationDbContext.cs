@@ -15,6 +15,7 @@ namespace PigmaAPI.Infrastructure.ApplicationDbContext
 
         public virtual DbSet<CompanyContact> CompanyContacts { get; set; }
         public virtual DbSet<CompanyAgency> CompanyAgencies { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +48,19 @@ namespace PigmaAPI.Infrastructure.ApplicationDbContext
                 entity.Property(e => e.MeansOfPayment).HasColumnType("varchar").HasMaxLength(255);
                 entity.Property(e => e.Iban).HasColumnType("varchar").HasMaxLength(255);
                 entity.Property(e => e.Bic).HasColumnType("varchar").HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.FirstName).HasColumnType("varchar").HasMaxLength(255);
+                entity.Property(e => e.Password).HasColumnType("varchar").HasMaxLength(255);
+                entity.Property(e => e.LastName).HasColumnType("varchar").HasMaxLength(255);
+                entity.Property(e => e.Username).HasColumnType("varchar").HasMaxLength(255);
+                entity.Property(e => e.Id).HasColumnType("int").HasMaxLength(11);
+            
+
             });
         }
 

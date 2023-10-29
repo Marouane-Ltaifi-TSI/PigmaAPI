@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PigmaAPI.Common.Enums;
 using PigmaAPI.Entities;
-using PigmaAPI.Infrastructure.ApplicationDbContext;
 using PigmaAPI.Services.CompanyContacts.Services.Contracts;
+using PigmaAPI.Helpers;
 
 namespace PigmaAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class CompanyContactsController : ControllerBase
@@ -19,6 +19,8 @@ namespace PigmaAPI.Controllers
             _service = service;
             _logger = logger;
         }
+
+        [Authorize]
         [Route("GetAll")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CompanyContact>>> GetAllCompanyContacts()
@@ -33,6 +35,7 @@ namespace PigmaAPI.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [Route("GetById/{id}")]
         [HttpGet]
         public async Task<ActionResult<CompanyContact>> GetCompanyContactById(int id)
@@ -49,6 +52,7 @@ namespace PigmaAPI.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [Route("Update")]
         [HttpPut]
         public async Task<IActionResult> PutCompanyContact(CompanyContact companyContact)
@@ -63,6 +67,8 @@ namespace PigmaAPI.Controllers
             
             return NotFound();
         }
+
+        [Authorize]
         [Route("Create")]
         [HttpPost]
         public async Task<IActionResult> PostCompanyContact(CompanyContact companyContact)
@@ -76,6 +82,7 @@ namespace PigmaAPI.Controllers
             }
             return BadRequest();
         }
+        [Authorize]
 
         [Route("Delete/{id}")]
         [HttpDelete]
