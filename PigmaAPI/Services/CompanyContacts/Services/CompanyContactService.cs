@@ -70,11 +70,11 @@ public class CompanyContactService : ICompanyContactService
 
     public async Task<ActionStatus> Update(CompanyContact contact)
     {
-        var _companyContact = Context.CompanyContacts;
-        var result = _companyContact.FirstOrDefault(cc => cc.Id == contact.Id);
+        var result = await Context.CompanyContacts.AsNoTracking().FirstOrDefaultAsync(cc => cc.Id == contact.Id);
         if (result != null)
         {
             result = contact;
+            var entry = Context.Update(result);
             await Context.SaveChangesAsync();
             return ActionStatus.Success;
         }
