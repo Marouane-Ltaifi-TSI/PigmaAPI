@@ -98,6 +98,21 @@ namespace PigmaAPI.Controllers
             return BadRequest();
         }
 
-     
+        [Authorize]
+
+        [Route("DeleteAll")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteAllCompanyContact(List<CompanyContact> companyContacts)
+        {
+            _logger.LogInformation("{id},{ControllerBase} DeleteAllCompanyContact()", nameof(companyContacts), nameof(ControllerBase));
+
+            var result = await _service.DeleteAll(companyContacts);
+            if (result is ActionStatus.Success)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
     }
 }

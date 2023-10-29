@@ -31,6 +31,7 @@ public class CompanyContactService : ICompanyContactService
 
     }
 
+   
     public async Task<ActionStatus> DeleteById(int id)
     {
         if (Context != null)
@@ -81,4 +82,14 @@ public class CompanyContactService : ICompanyContactService
         
         return ActionStatus.NotFound;
     }
+    public async Task<ActionStatus> DeleteAll(List<CompanyContact> companyContactsList)
+    {
+        foreach (var companyContact in companyContactsList)
+        {
+            await DeleteById(companyContact.Id);
+        }
+
+        return ActionStatus.Success;
+    }
+
 }
